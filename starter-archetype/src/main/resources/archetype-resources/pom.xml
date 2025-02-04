@@ -203,6 +203,12 @@
 #if (${deployWar} == "true")
                     <deployWar>true</deployWar>
 #end
+                    <!-- use IPv4 stack instead of IPv6 stack-->
+                    <javaCommandLineOptions>
+                        <option>
+                            <value>-Djava.net.preferIPv4Stack=true</value>
+                        </option>
+                    </javaCommandLineOptions>
 #if (${autoBindHttp} == "true")
                     <commandLineOptions>
                         <option>
@@ -247,6 +253,8 @@
 #if ((${platform} == 'server'))
                         <payara.home>${payara.home}</payara.home>
 #else
+                        <!-- use IPv4 stack instead of IPv6 stack -->
+                        <payara.cmdOptions>-Djava.net.preferIPv4Stack=true</payara.cmdOptions>
                         <payara.microJar>${project.build.directory}/payara-micro-${payara.version}.jar</payara.microJar>
 #end
                     </systemPropertyVariables>
